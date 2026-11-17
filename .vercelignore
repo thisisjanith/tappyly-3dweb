@@ -1,0 +1,3 @@
+# client originals: not used by the build (web copies live in public/ and src/assets/)
+src/assests
+assets-from-client
