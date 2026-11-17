@@ -1,7 +1,6 @@
-import { lazy, useEffect, useRef, useState } from 'react'
+import { lazy, useRef, useState } from 'react'
 import { SceneCanvas } from '../three/common/SceneCanvas'
 import { useReveal, useCounter } from '../lib/hooks'
-import { getState } from '../lib/store'
 import { MagneticLink } from '../components/Button'
 import { ServiceCard, TiltCard } from '../components/Cards'
 import { CTA } from '../components/CTA'
@@ -27,24 +26,12 @@ export default function Services() {
   const root = useRef<HTMLDivElement>(null)
   useReveal(root)
   const [hover, setHover] = useState<number | null>(null)
-  const [auto, setAuto] = useState(0)
-
-  // idle: the ribbon slowly cycles through every service form
-  useEffect(() => {
-    if (hover !== null || getState().reduced) return
-    const id = setInterval(() => setAuto((a) => (a + 1) % SERVICES.length), 4200)
-    return () => clearInterval(id)
-  }, [hover])
-
-  const activeIdx = hover ?? auto
-  const shape = SERVICES[activeIdx].shape
-
   return (
     <div ref={root}>
       <section style={{ position: 'relative' }} aria-labelledby="services-title">
         <div style={{ position: 'sticky', top: 0, height: '100svh', marginBottom: '-100svh', zIndex: 0 }}>
-          <SceneCanvas camera={{ position: [0, 0, 9], fov: 36 }} label="Interactive 3D ribbon that morphs for each Tappyly service — drag to rotate">
-            <ServicesScene shape={shape} />
+          <SceneCanvas camera={{ position: [0, 0, 9], fov: 36 }} label="Glossy 3D infinity symbol that tilts with your cursor">
+            <ServicesScene />
           </SceneCanvas>
         </div>
         <div className="page-hero stage-top" style={{ minHeight: '78svh', alignItems: 'flex-end' }}>
@@ -58,9 +45,6 @@ export default function Services() {
               </p>
               <div className="hero__actions" data-reveal data-immediate data-delay="0.45" style={{ marginTop: 30 }}>
                 <MagneticLink to="/contact" size="sm">Get Started <Arrow /></MagneticLink>
-                <span style={{ fontSize: 13, color: 'var(--muted)' }}>
-                  Now showing: <strong style={{ color: 'var(--text)' }}>{SERVICES[activeIdx].title}</strong>
-                </span>
               </div>
             </div>
           </div>
@@ -68,7 +52,7 @@ export default function Services() {
         <div className="container" style={{ position: 'relative', zIndex: 1, paddingBottom: 120 }}>
           <div className="svc-grid svc-grid--3" data-stagger>
             {SERVICES.map((s, i) => (
-              <ServiceCard key={s.id} s={s} large active={activeIdx === i} to="/contact" onEnter={() => setHover(i)} onLeave={() => setHover(null)} />
+              <ServiceCard key={s.id} s={s} large active={hover === i} to="/contact" onEnter={() => setHover(i)} onLeave={() => setHover(null)} />
             ))}
           </div>
         </div>

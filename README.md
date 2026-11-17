@@ -17,7 +17,7 @@ Add `?quality=low|mid|high` to any URL to force a GPU tier when testing.
 | --- | --- | --- |
 | Home | Glossy app icon (extruded hand + emissive signal arcs), transmissive glass cards, ridged-noise shader terrain, river of light spiralling around the icon, fbm nebula, twinkling GPU starfield | Tap the icon (press, elastic rebound, shockwave); cursor parallax; scroll moves the camera in |
 | Home: work | Coverflow of shader-driven project panels | Drag or use the arrows; click to open a case study |
-| Services | Fully GPU-procedural ribbon: the vertex shader evaluates 6 parametric knots and morphs between them | Hover a service to morph the ribbon and its palette; drag to spin it; pointer movement adds ripples |
+| Services | Glossy 3D infinity symbol (client model) with sparkles | Sways gently and tilts with the cursor; hover a service card to highlight it |
 | Portfolio | Tilted wall of panels (rounded-corner SDF, hover ripple, RGB split, edge glow, sheen) | Filters fly panels away and re-flow the rest; click for details |
 | About | Procedural night-time studio: real-time reflective floor, shader city skyline, neon sign, pendant lights | Cursor parallax |
 | Insights | Glossy 3D infinity symbol (client model) over a starfield | Sways gently and tilts with the cursor |
@@ -28,7 +28,7 @@ Most textures (card glyphs, project mockups, neon sign, monitors) are drawn proc
 | Model | Used in | Fallback if it fails to load |
 | --- | --- | --- |
 | `tappyly-logo.glb` | Home hero, centre | Procedural app icon |
-| `infinity.glb` | Insights hero; CTA banner (every page) | Particle galaxy; procedural ribbon |
+| `infinity.glb` | Services hero; Insights hero; CTA banner (every page) | Particle galaxy; procedural ribbon |
 
 ## Performance & accessibility
 
